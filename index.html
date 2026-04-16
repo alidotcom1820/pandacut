@@ -10,6 +10,8 @@
             --bg: #ffffff;
             --text: #111111;
             --surface: rgba(0,0,0,0.04);
+            --border: rgba(0,0,0,0.08);
+            --accent: #000000;
         }
         * {
             box-sizing: border-box;
@@ -17,8 +19,10 @@
         body {
             margin: 0;
             min-height: 100vh;
-            display: grid;
-            place-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             background: var(--bg);
             color: var(--text);
             font-family: "Inter", Arial, sans-serif;
@@ -26,14 +30,19 @@
         }
         .hero {
             width: min(100%, 900px);
-            padding: 2rem;
+            padding: 2rem 1.5rem 0;
+        }
+        .hero__link {
+            display: inline-block;
+            width: min(100%, 420px);
+            margin: 0 auto 2rem;
         }
         .hero__logo {
             display: block;
-            max-width: 420px;
-            width: 85%;
+            width: 100%;
             height: auto;
-            margin: 0 auto 2rem;
+            border-radius: 24px;
+            border: 1px solid var(--border);
         }
         .hero__title {
             font-size: clamp(3.5rem, 8vw, 6rem);
@@ -42,18 +51,86 @@
             margin: 0;
             font-weight: 800;
         }
-        .hero__note {
-            margin: 1.5rem auto 0;
-            color: rgba(0, 0, 0, 0.6);
-            font-size: 1rem;
-            max-width: 26rem;
+        .footer {
+            width: 100%;
+            background: #f7f7f7;
+            border-top: 1px solid var(--border);
+            padding: 1rem 1.5rem 2rem;
+            margin-top: auto;
+        }
+        .footer__grid {
+            display: grid;
+            gap: 1rem;
+            justify-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .footer__row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: rgba(0,0,0,0.75);
+        }
+        .footer__row span,
+        .footer__row a {
+            display: inline-block;
+        }
+        .footer__button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.9rem 1.3rem;
+            border-radius: 999px;
+            border: 1px solid var(--text);
+            background: var(--text);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .footer__button:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+        .footer__small {
+            margin-top: 1rem;
+            color: rgba(0,0,0,0.55);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 640px) {
+            .hero {
+                padding-top: 1.5rem;
+            }
+            .footer {
+                padding: 1rem;
+            }
+            .footer__row {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
     <main class="hero">
-        <img src="panda-cut-hero.png" alt="Panda Cut Logo" class="hero__logo" />
+        <a class="hero__link" href="tel:+436605010124" aria-label="Panda Cut anrufen">
+            <img src="panda-cut-hero.png" alt="Panda Cut Logo" class="hero__logo" />
+        </a>
         <h1 class="hero__title">Panda Cut</h1>
     </main>
+    <footer class="footer">
+        <div class="footer__grid">
+            <div class="footer__row">
+                <span>Jakominiplatz 1, 8010 Graz</span>
+                <span>Mo–Fr 09:00–18:00</span>
+                <span>Sa 10:00–16:00</span>
+                <a href="tel:+436605010124">+43 660 5010124</a>
+            </div>
+            <a class="footer__button" href="https://wa.me/436605010124?text=Bruder%20hast%20du%20am%20%3CDATUM%26UHRZEIT%3E%20Zeit%3F%20%F0%9F%98%89%F0%9F%90%BC" target="_blank" rel="noreferrer">WhatsApp</a>
+            <div class="footer__small">Klicke auf das Panda-Logo, um direkt anzurufen.</div>
+        </div>
+    </footer>
 </body>
 </html>
