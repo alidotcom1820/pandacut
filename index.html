@@ -36,12 +36,13 @@
             display: inline-block;
             width: min(100%, 420px);
             margin: 0 auto 2rem;
+            animation: hoverGlow 4s ease-in-out infinite;
         }
-        .hero__logo {
+        .panda-svg {
             display: block;
             width: 100%;
+            max-width: 420px;
             height: auto;
-            border-radius: 24px;
         }
         .hero__title {
             font-size: clamp(3.5rem, 8vw, 6rem);
@@ -49,6 +50,30 @@
             letter-spacing: -0.05em;
             margin: 0;
             font-weight: 800;
+            animation: fadeInUp 1s ease both;
+        }
+        .panda-eye {
+            transform-origin: center;
+            animation: wink 4s infinite ease-in-out;
+        }
+        .panda-body {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes wink {
+            0%, 15%, 100% { transform: scaleY(1); }
+            10% { transform: scaleY(0.12); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-9px); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes hoverGlow {
+            0%, 100% { filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+            50% { filter: drop-shadow(0 12px 30px rgba(0,0,0,0.08)); }
         }
         .footer {
             width: 100%;
@@ -115,16 +140,40 @@
 <body>
     <main class="hero">
         <a class="hero__link" href="https://wa.me/436605010124?text=Bruder%20hast%20du%20am%20%3CDATUM%26UHRZEIT%3E%20Zeit%3F%20%F0%9F%98%89%F0%9F%90%BC" aria-label="Panda Cut WhatsApp Nachricht senden" target="_blank" rel="noreferrer">
-            <img src="panda-cut-hero.png" alt="Panda Cut Logo" class="hero__logo" />
+            <svg class="panda-svg" viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg" aria-label="Animierter Panda Logo">
+                <defs>
+                    <linearGradient id="pandaShadow" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(0,0,0,0.08)" />
+                        <stop offset="100%" stop-color="rgba(0,0,0,0)" />
+                    </linearGradient>
+                </defs>
+                <ellipse class="panda-body" cx="130" cy="132" rx="112" ry="88" fill="#fff" stroke="#111" stroke-width="5"/>
+                <ellipse cx="60" cy="45" rx="28" ry="30" fill="#111"/>
+                <ellipse cx="200" cy="45" rx="28" ry="30" fill="#111"/>
+                <ellipse cx="92" cy="95" rx="28" ry="34" fill="#111"/>
+                <g class="panda-eye">
+                    <ellipse cx="178" cy="95" rx="28" ry="34" fill="#111"/>
+                </g>
+                <circle cx="98" cy="92" r="6" fill="#fff"/>
+                <circle cx="178" cy="92" r="6" fill="#fff"/>
+                <ellipse cx="130" cy="118" rx="14" ry="8" fill="#111"/>
+                <path d="M117 128 Q130 142 143 128" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <path d="M32 110 Q24 95 28 85" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <path d="M228 110 Q236 95 232 85" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <path d="M32 110 L12 74" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+                <path d="M32 110 L20 64" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+                <path d="M228 110 L238 74" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+                <path d="M228 110 L240 64" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+                <ellipse cx="130" cy="206" rx="80" ry="18" fill="url(#pandaShadow)"/>
+            </svg>
         </a>
         <h1 class="hero__title">Panda Cut</h1>
     </main>
     <footer class="footer">
         <div class="footer__grid">
             <div class="footer__row">
-                <span>Jakominiplatz 1, 8010 Graz</span>
-                <span>Mo–Fr 09:00–18:00</span>
-                <span>Sa 10:00–16:00</span>
+                <span>Jakominiplatz 17, 8010 Graz</span>
+                <span>Mo–Sa 08:00–19:00</span>
                 <a href="tel:+436605010124">+43 660 5010124</a>
             </div>
             <div class="footer__small">Klicke auf das Panda-Logo, um direkt eine WhatsApp-Nachricht zu senden.</div>
