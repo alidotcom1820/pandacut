@@ -64,10 +64,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes tapPulse {
-            0% { transform: scale(1); }
-            35% { transform: scale(1.08); }
-            70% { transform: scale(0.98); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1) translateY(0); }
+            25% { transform: scale(1.16) translateY(-10px); }
+            55% { transform: scale(0.92) translateY(4px); }
+            80% { transform: scale(1.05) translateY(-4px); }
+            100% { transform: scale(1) translateY(0); }
         }
         .footer {
             width: 100%;
@@ -91,26 +92,23 @@
             font-size: 0.95rem;
             color: rgba(0,0,0,0.75);
         }
-        .footer__row span,
-        .footer__row a {
+        .footer__row span {
             display: inline-block;
         }
-        .footer__button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.9rem 1.3rem;
-            border-radius: 999px;
-            border: 1px solid var(--text);
-            background: var(--text);
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 700;
-            transition: transform 0.2s ease, opacity 0.2s ease;
+        .trail-dot {
+            position: fixed;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.14);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            animation: trailFade 0.8s ease-out forwards;
+            z-index: 9999;
         }
-        .footer__button:hover {
-            transform: translateY(-1px);
-            opacity: 0.9;
+        @keyframes trailFade {
+            0% { opacity: 0.95; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
         }
         .footer__small {
             margin-top: 1rem;
@@ -143,17 +141,24 @@
             <div class="footer__row">
                 <span>Jakominiplatz 17, 8010 Graz</span>
                 <span>Mo–Sa 08:00–19:00</span>
-                <a href="tel:+436605010124">+43 660 5010124</a>
+                <span>+43 660 5010124</span>
             </div>
             <div class="footer__small">Klicke auf das Panda-Logo, um direkt eine WhatsApp-Nachricht zu senden.</div>
         </div>
     </footer>
     <script>
         const heroLogo = document.getElementById('heroLogo');
-        document.body.addEventListener('pointerdown', () => {
+        document.body.addEventListener('pointerdown', (event) => {
             heroLogo.classList.remove('tap-effect');
             void heroLogo.offsetWidth;
             heroLogo.classList.add('tap-effect');
+
+            const dot = document.createElement('div');
+            dot.className = 'trail-dot';
+            dot.style.left = event.clientX + 'px';
+            dot.style.top = event.clientY + 'px';
+            document.body.appendChild(dot);
+            dot.addEventListener('animationend', () => dot.remove());
         });
     </script>
 </body>
