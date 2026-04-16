@@ -3,51 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panda Cut Barbershop</title>
+    <title>Panda Cut Graz</title>
+    <meta name="description" content="Panda Cut: moderner Jugend-Friseursalon Graz. Minimalistisches Design, Mobil-First und 2030-fähiger Look." />
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        nav { background: #333; color: #fff; padding: 10px; }
-        nav ul { list-style: none; padding: 0; }
-        nav ul li { display: inline; margin-right: 15px; }
-        .hero { text-align: center; padding: 50px 0; }
-        .canvas { background: #f0f0f0; width: 100%; height: 300px; position: relative; }
-        .contact { margin: 20px 0; }
-        .button { background: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
-        @media (max-width: 600px) {
-            nav ul li { display: block; margin: 5px 0; }
+        :root {
+            color-scheme: dark;
+            --bg: #0e1321;
+            --surface: rgba(255,255,255,0.06);
+            --surface-strong: rgba(255,255,255,0.12);
+            --text: #f5f7ff;
+            --accent: #8ae4ff;
+            --accent-strong: #3dd1ff;
+            --border: rgba(255,255,255,0.14);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Inter", Arial, sans-serif;
+            background: radial-gradient(circle at top, rgba(138,228,255,0.18), transparent 35%),
+                        linear-gradient(180deg, #111827 0%, #0d1220 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(14, 19, 33, 0.86);
+            border-bottom: 1px solid var(--border);
+        }
+        .topnav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        .topnav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+        .topnav a:hover {
+            color: var(--accent-strong);
+        }
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(280px, 1fr) minmax(280px, 360px);
+            gap: 2rem;
+            align-items: center;
+            padding: 4rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero-text {
+            max-width: 620px;
+        }
+        .hero h1 {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            margin: 1.25rem 0 1.75rem;
+            max-width: 36rem;
+            color: #dbe4ff;
+        }
+        .button-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.95rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #08101d;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 40px rgba(61, 209, 255, 0.16);
+        }
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        .link-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.2rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .link-pill:hover {
+            transform: translateY(-1px);
+            background: rgba(138,228,255,0.12);
+        }
+        .canvas-wrap {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            background: rgba(255,255,255,0.02);
+            box-shadow: inset 0 0 28px rgba(255,255,255,0.05);
+        }
+        .hero-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 28px;
+            object-fit: contain;
+        }
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+        .card {
+            padding: 1.6rem;
+            border-radius: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .info-grid > div {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 1.5rem;
+        }
+        .booking-form {
+            display: grid;
+            gap: 1rem;
+        }
+        .booking-form label {
+            display: grid;
+            gap: 0.45rem;
+            font-size: 0.95rem;
+        }
+        .booking-form input,
+        .booking-form textarea,
+        .booking-form button {
+            width: 100%;
+            padding: 0.95rem 1rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(255,255,255,0.04);
+            color: var(--text);
+            font: inherit;
+        }
+        .booking-form button {
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #08101d;
+            border: none;
+            font-weight: 700;
+        }
+        .booking-form button:hover {
+            transform: translateY(-1px);
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 1.5rem 3rem;
+            color: #a5b3d1;
+        }
+        @media (max-width: 840px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .info-grid { grid-template-columns: 1fr; }
+            .canvas-wrap {
+                max-width: 100%;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Startseite</a></li>
-            <li><a href="#">Über uns</a></li>
-            <li><a href="#">Dienstleistungen</a></li>
-            <li><a href="#">Kontakt</a></li>
-        </ul>
-    </nav>
-    <div class="hero">
-        <h1>Willkommen bei Panda Cut</h1>
-        <div class="canvas" id="pandaCanvas"></div>
-        <div class="contact">
-            <p>Adresse: Jakominipl. 17, 8010 Graz</p>
-            <p>Telefon: 0660 5010124</p>
-            <p>Öffnungszeiten: Montag-Samstag 08:00-19:00, Sonntag geschlossen</p>
-            <button class="button" onclick="window.open('https://wa.me/06605010124', '_blank')">Buchung über WhatsApp</button>
-        </div>
-    </div>
-    <script>
-        const canvas = document.getElementById('pandaCanvas');
-        const ctx = canvas.getContext('2d');
-        // Panda Canvas Animation Logic (Placeholder)
-        canvas.width = window.innerWidth;
-        canvas.height = 300;
-        canvas.addEventListener('mousemove', (event) => {
-            const x = event.clientX;
-            const y = event.clientY;
-            // Logic to animate panda following mouse here
-        });
-    </script>
+    <header>
+        <nav class="topnav">
+            <a href="#start">Startseite</a>
+            <a href="#ueber-uns">Über uns</a>
+            <a href="#dienstleistungen">Dienstleistungen</a>
+            <a href="#kontakt">Kontakt</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="start" class="hero">
+            <div class="hero-text">
+                <p style="margin:0 0 1rem; color:#8ae4ff; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;">Panda Cut Graz</p>
+                <h1>Cool, minimal und 2030-ready für Graz' Jugend.</h1>
+                <p>Smartphone-first Homepage, maximaler Style mit nur drei Farben: Schwarz, Weiß und modernes Cyan.</p>
+                <div class="contact-links">
+                    <a class="link-pill" href="tel:+43316123456">📞 Anrufen</a>
+                    <a class="link-pill" href="#kontakt">📅 Termin</a>
+                    <a class="link-pill" href="https://www.instagram.com/pandacut.at" target="_blank" rel="noreferrer">Instagram</a>
+                </div>
+            </div>
+            <div class="canvas-wrap">
+                <img src="panda-cut-hero.png" alt="Panda Cut Logo mit Schere und Rasierer" class="hero-image" />
+            </div>
+        </section>
+
+        <section id="ueber-uns" class="section">
+            <h2>Über uns</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Direkt am Jakominiplatz</h3>
+                    <p>Unser Salon ist der Treffpunkt für Graz' Jugendliche und junge Leute, die frische Styles und 2030‑Design erwarten.</p>
+                </div>
+                <div class="card">
+                    <h3>Modern & minimal</h3>
+                    <p>Die Webseite bleibt bewusst reduziert in Schwarz, Weiß und Cyan – klar, schnell und perfekt für mobile Nutzer.</p>
+                </div>
+                <div class="card">
+                    <h3>Cloudflare-Ready</h3>
+                    <p>Die gesamte Seite ist statisch aufgebaut und ideal für den schnellen Deploy mit Cloudflare Pages.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dienstleistungen" class="section">
+            <h2>Unsere Leistungen</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Schnitt & Styling</h3>
+                    <p>Modische Schnitte für Damen, Herren und Kinder – vom klassischen Look bis zur trendigen Frisur.</p>
+                </div>
+                <div class="card">
+                    <h3>Farbe & Strähnen</h3>
+                    <p>Professionelle Farbbehandlungen, die dein Haar beleben und perfekt zu deinem Stil passen.</p>
+                </div>
+                <div class="card">
+                    <h3>Pflege & Beratung</h3>
+                    <p>Individuelle Beratung für Haarpflege und Styling-Tools, die deine Frisur zu Hause unterstützen.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontakt" class="section">
+            <h2>Kontakt & Termin</h2>
+            <div class="info-grid">
+                <div>
+                    <h3>Adresse</h3>
+                    <p>Jakominiplatz 1<br>8010 Graz</p>
+                    <p>Öffnungszeiten</p>
+                    <p>Mo–Fr: 09:00–18:00<br>Sa: 10:00–16:00<br>So: geschlossen</p>
+                    <p>Email: kontakt@pandacut.at</p>
+                    <p>Tel: <a class="link-pill" href="tel:+43316123456">+43 316 123 456</a></p>
+                    <p><a class="link-pill" href="https://www.google.com/maps/place/Jakominiplatz+1,+8010+Graz" target="_blank" rel="noreferrer">Google Rezensionen</a></p>
+                    <p><a class="link-pill" href="https://www.instagram.com/pandacut.at" target="_blank" rel="noreferrer">Instagram</a></p>
+                </div>
+                <div>
+                    <form class="booking-form" onsubmit="event.preventDefault(); alert('Danke! Wir melden uns bald mit deiner Terminbestätigung.');">
+                        <label>
+                            Name
+                            <input type="text" placeholder="Dein Name" required />
+                        </label>
+                        <label>
+                            Email
+                            <input type="email" placeholder="name@mail.at" required />
+                        </label>
+                        <label>
+                            Wunschdatum
+                            <input type="date" required />
+                        </label>
+                        <label>
+                            Nachricht
+                            <textarea rows="4" placeholder="Ich wünsche mir ..."></textarea>
+                        </label>
+                        <button type="submit">Termin anfragen</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Mobile-first, minimal, in Schwarz-Weiß plus modernem Cyan. Bereit für Cloudflare Pages Deployment und für Besucher von 2030.</p>
+    </footer>
 </body>
 </html>
