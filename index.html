@@ -1,42 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panda Cut</title>
+    <title>Panda Cut Barbershop</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .hero { 
-            background: url('path/to/panda-image.gif') no-repeat center center; 
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        nav { background: #333; color: #fff; padding: 10px; }
+        nav ul { list-style: none; padding: 0; }
+        nav ul li { display: inline; margin-right: 15px; }
+        .hero { text-align: center; padding: 50px 0; }
+        .canvas { background: #f0f0f0; width: 100%; height: 300px; position: relative; }
+        .contact { margin: 20px 0; }
+        .button { background: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+        @media (max-width: 600px) {
+            nav ul li { display: block; margin: 5px 0; }
         }
-        .contact-info, .opening-hours, .booking-options { padding: 20px; }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <h1>Welcome to Panda Cut!</h1>
-        <p>Your friendly neighborhood panda grooming service.</p>
-    </section>
-    <section class="contact-info">
-        <h2>Contact Us</h2>
-        <p>Email: contact@pandacut.com</p>
-        <p>Phone: (123) 456-7890</p>
-    </section>
-    <section class="opening-hours">
-        <h2>Opening Hours</h2>
-        <p>Monday to Friday: 9:00 AM - 5:00 PM</p>
-        <p>Saturday: 10:00 AM - 4:00 PM</p>
-        <p>Sunday: Closed</p>
-    </section>
-    <section class="booking-options">
-        <h2>Book Your Appointment</h2>
-        <p>Click <a href="/book">here</a> to book your appointment online!</p>
-    </section>
+    <nav>
+        <ul>
+            <li><a href="#">Startseite</a></li>
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">Dienstleistungen</a></li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <h1>Willkommen bei Panda Cut</h1>
+        <div class="canvas" id="pandaCanvas"></div>
+        <div class="contact">
+            <p>Adresse: Jakominipl. 17, 8010 Graz</p>
+            <p>Telefon: 0660 5010124</p>
+            <p>Öffnungszeiten: Montag-Samstag 08:00-19:00, Sonntag geschlossen</p>
+            <button class="button" onclick="window.open('https://wa.me/06605010124', '_blank')">Buchung über WhatsApp</button>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('pandaCanvas');
+        const ctx = canvas.getContext('2d');
+        // Panda Canvas Animation Logic (Placeholder)
+        canvas.width = window.innerWidth;
+        canvas.height = 300;
+        canvas.addEventListener('mousemove', (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
+            // Logic to animate panda following mouse here
+        });
+    </script>
 </body>
 </html>
